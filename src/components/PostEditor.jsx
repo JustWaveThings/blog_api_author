@@ -1,5 +1,6 @@
 import React, { useRef } from 'react';
 import { Editor } from '@tinymce/tinymce-react';
+import { Link } from 'react-router-dom';
 
 export default function PostEditor() {
   const editorRef = useRef(null);
@@ -42,10 +43,13 @@ export default function PostEditor() {
             'alignright alignjustify | bullist numlist outdent indent | ' +
             'removeformat | help',
           content_style:
-            'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }',
+            'body { font-family:Helvetica,Arial,sans-serif; font-size:12px }',
+          skin: 'oxide-dark',
+          content_css: 'dark',
         }}
       />
       <button onClick={log}>Log editor content</button>
+      <Link to='/'>Go to Editor Home </Link>
     </>
   );
 }
