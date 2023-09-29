@@ -5,17 +5,18 @@ const Home = () => {
 
   return (
     <div className='element'>
-      <h1>Blog Home</h1>
+      <h1>Blog Editing Home</h1>
       {posts && (
         <ul>
           {posts.map(post => (
             <li key={post._id}>
-              <Link to={`/posts/${post._id}`}>{post.title}</Link>
-              <p>Subhead: {post.subtitle}</p>
-              <p>Created: {post.created_timestamp_formatted}</p>
-              <p>Comments: {post.comment_count}</p>
-              <p>Age: {post.post_age_created} Days</p>
-              <p>Likes: {post.likes}</p>
+              <div>
+                Post Title:
+                <Link to={`/posts/${post._id}`}> {post.title}</Link>
+                <div>Post Published: {post.published.toString()}</div>
+                <Link to={`/posts/${post._id}/edit`}>Edit</Link>
+                <Link to={`/posts/${post._id}/delete`}>Delete</Link>
+              </div>
             </li>
           ))}
         </ul>
