@@ -4,9 +4,10 @@ import ErrorPage from './components/ErrorPage';
 
 import Home from './components/Home';
 import homeLoader from './loaders/homeLoader';
-import Post from './components/Post';
+import Post from './components/PostEditor';
 import postLoader from './loaders/postLoader';
 import PostEditor from './components/PostEditor';
+import PEContainer from './components/PEContainer';
 
 const Router = () => {
   const router = createBrowserRouter([
@@ -22,7 +23,7 @@ const Router = () => {
         },
         {
           path: '/editor',
-          element: <PostEditor />,
+          element: <PEContainer />,
         },
         {
           path: '/posts/:id',
