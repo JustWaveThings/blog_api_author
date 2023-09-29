@@ -20,6 +20,7 @@ const Home = () => {
           ))}
         </ul>
       )}
+      <Link to='editor'>Go to Post Editor</Link>
     </div>
   );
 };

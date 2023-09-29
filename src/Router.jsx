@@ -6,6 +6,7 @@ import Home from './components/Home';
 import homeLoader from './loaders/homeLoader';
 
 import postLoader from './loaders/postLoader';
+import PostEditor from './components/PostEditor';
 
 const Router = () => {
   const router = createBrowserRouter([
@@ -18,6 +19,10 @@ const Router = () => {
           index: true,
           element: <Home />,
           loader: homeLoader,
+        },
+        {
+          path: '/editor',
+          element: <PostEditor />,
         },
         /*  {
           path: '/posts/:id',
