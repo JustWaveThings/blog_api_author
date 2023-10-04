@@ -1,4 +1,9 @@
-async function postCreator(data) {
+async function postCreator(
+  postData,
+  titleData,
+  subtitleData,
+  publishBool = false
+) {
   try {
     const response = await fetch(`http://localhost:3000/posts`, {
       method: 'POST',
@@ -7,10 +12,10 @@ async function postCreator(data) {
         mode: 'cors',
       },
       body: JSON.stringify({
-        body: data,
-        title: 'test',
-        subtitle: 'test',
-        published: true,
+        body: postData,
+        title: titleData,
+        subtitle: subtitleData,
+        published: publishBool,
       }),
     });
     const json = await response.json();
