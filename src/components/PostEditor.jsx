@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
 import { Editor } from '@tinymce/tinymce-react';
 import { Link } from 'react-router-dom';
+import postCreator from '../utils/postCreator';
 
 export default function PostEditor() {
   const editorRef = useRef(null);
@@ -9,6 +10,13 @@ export default function PostEditor() {
       console.log(editorRef.current.getContent());
     }
   };
+
+  const submit = () => {
+    if (editorRef.current) {
+      postCreator(editorRef.current.getContent());
+    }
+  };
+
   return (
     <>
       <Editor
@@ -50,6 +58,7 @@ export default function PostEditor() {
       />
       <button onClick={log}>Log editor content</button>
       <Link to='/'>Go to Editor Home </Link>
+      <button onClick={submit}>Submit</button>
     </>
   );
 }

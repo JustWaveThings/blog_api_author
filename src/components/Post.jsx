@@ -12,16 +12,8 @@ function Post() {
         Created: {post.created_timestamp_formatted} ({post.post_age_created}{' '}
         days old)
       </p>
-      <p></p>
-      <p>
-        {post.likes === 0
-          ? 'Be the first person to like this post.'
-          : post.likes === 1
-          ? `1 like`
-          : `${post.likes} likes`}
-      </p>
       <br />
-      <p>{post.body}</p>
+      <p className='textarea'>{validator.unescape(post.body)}</p>
       <br />
       <p>All Comments: </p>
       <br />
@@ -42,7 +34,7 @@ function Post() {
               ? `1 like`
               : `${comment.likes} likes`}
             <button>Like</button>
-            <button>Report</button>
+            <button>Delete</button>
           </p>
         </div>
       ))}
