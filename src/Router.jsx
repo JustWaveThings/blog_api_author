@@ -4,9 +4,8 @@ import ErrorPage from './components/ErrorPage';
 
 import Home from './components/Home';
 import homeLoader from './loaders/homeLoader';
-import Post from './components/PostEditor';
+import Post from './components/Post';
 import postLoader from './loaders/postLoader';
-import PostEditor from './components/PostEditor';
 import PEContainer from './components/PEContainer';
 
 const Router = () => {
@@ -22,13 +21,13 @@ const Router = () => {
           loader: homeLoader,
         },
         {
-          path: '/editor',
-          element: <PEContainer />,
-        },
-        {
           path: '/posts/:id',
           element: <Post />,
           loader: postLoader,
+        },
+        {
+          path: '/editor',
+          element: <PEContainer />,
         },
       ],
     },
