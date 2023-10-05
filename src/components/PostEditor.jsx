@@ -5,20 +5,30 @@ import postCreator from '../utils/postCreator';
 
 export default function PostEditor() {
   const editorRef = useRef(null);
+  function submit(e) {
+    e.preventDefault();
+    const { title, subtitle, publish } = Object.fromEntries(
+      new FormData(e.target)
+    );
+    postCreator(editorRef.current.getContent(), title, subtitle, publish);
+  }
+
   const log = () => {
     if (editorRef.current) {
       console.log(editorRef.current.getContent());
     }
   };
 
-  const submit = () => {
-    if (editorRef.current) {
-      postCreator(editorRef.current.getContent());
-    }
-  };
-
   return (
-    <>
+    <form onSubmit={submit}>
+      <label>
+        Title:
+        <input name='title' type='text' placeholder='Title' />
+      </label>
+      <label>
+        Subtitle:
+        <input name='subtitle' type='text' placeholder='Subtitle' />
+      </label>
       <Editor
         tinymceScriptSrc={'./tinymce/tinymce.min.js'}
         onInit={(evt, editor) => (editorRef.current = editor)}
@@ -56,9 +66,12 @@ export default function PostEditor() {
           content_css: 'dark',
         }}
       />
-      <button onClick={log}>Log editor content</button>
       <Link to='/'>Go to Editor Home </Link>
-      <button onClick={submit}>Submit</button>
-    </>
+      <label>
+        Publish:
+        <input type='checkbox' name='publish' value='true' />
+      </label>
+      <button type='submit'>Submit</button>
+    </form>
   );
 }
