@@ -1,7 +1,7 @@
 async function postCreator(
   postData,
-  titleData,
-  subtitleData,
+  titleData = 'default title',
+  subtitleData = 'default subtitle',
   publishBool = false
 ) {
   try {
