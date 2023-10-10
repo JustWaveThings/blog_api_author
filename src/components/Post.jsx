@@ -1,19 +1,20 @@
 import { useLoaderData, Link } from 'react-router-dom';
 import validator from 'validator';
+import PostContent from './PostContent';
 
 function Post() {
   const post = useLoaderData();
 
   return (
     <div className='element'>
-      <p>Title: {post.title}</p>
-      <p>Subheading: {post.subtitle}</p>
+      <p>Title: {validator.unescape(post.title)}</p>
+      <p>Subheading: {validator.unescape(post.subtitle)}</p>
       <p>
         Created: {post.created_timestamp_formatted} ({post.post_age_created}{' '}
         days old)
       </p>
       <br />
-      <p className='textarea'>{validator.unescape(post.body)}</p>
+      <PostContent />
       <br />
       <p>All Comments: </p>
       <br />
