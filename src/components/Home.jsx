@@ -1,4 +1,5 @@
 import { useLoaderData, Link } from 'react-router-dom';
+import validator from 'validator';
 
 const Home = () => {
   const { posts } = useLoaderData();
@@ -12,7 +13,10 @@ const Home = () => {
             <li key={post._id}>
               <div>
                 Post Title:
-                <Link to={`/posts/${post._id}`}> {post.title}</Link>
+                <Link to={`/posts/${post._id}`}>
+                  {' '}
+                  {validator.unescape(post.title)}
+                </Link>
                 <div>Post Published: {post.published.toString()}</div>
                 <Link to={`/posts/${post._id}/edit`}>Edit</Link>
                 <Link to={`/posts/${post._id}/delete`}>Delete</Link>
