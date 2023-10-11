@@ -1,6 +1,7 @@
 import { useLoaderData, Link } from 'react-router-dom';
 import validator from 'validator';
 import PostContent from './PostContent';
+import { dateTimeDisplay } from '../utils/dateTimeDisplay';
 
 function Post() {
   const post = useLoaderData();
@@ -10,8 +11,9 @@ function Post() {
       <p>Title: {validator.unescape(post.title)}</p>
       <p>Subheading: {validator.unescape(post.subtitle)}</p>
       <p>
-        Created: {post.created_timestamp_formatted} ({post.post_age_created}{' '}
-        days old)
+        Created: {dateTimeDisplay(post.created_timestamp)}
+        {` - `}
+        {post.created_timestamp_formatted}
       </p>
       <br />
       <PostContent />
@@ -22,8 +24,9 @@ function Post() {
         <div className='comment' key={comment._id}>
           <p>Name: {comment.name}</p>
           <p>
-            Posted: {comment?.published_timestamp_formatted} (
-            {comment?.comment_age_published} days ago)
+            Posted: {dateTimeDisplay(comment.published_timestamp)}
+            {` - `}
+            {post.created_timestamp_formatted}
           </p>
           <p className='textarea'>
             Comment: {validator.unescape(comment.body)}
