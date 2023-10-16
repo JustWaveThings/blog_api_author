@@ -31,15 +31,6 @@ function Post() {
           <p className='textarea'>
             Comment: {validator.unescape(comment.body)}
           </p>
-          <p>
-            {comment.likes === 0
-              ? '0 likes'
-              : comment.likes === 1
-              ? `1 like`
-              : `${comment.likes} likes`}
-            <button>Like</button>
-            <button>Delete</button>
-          </p>
         </div>
       ))}
       <br />
