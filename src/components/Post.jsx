@@ -10,11 +10,7 @@ function Post() {
     <div className='element'>
       <p>Title: {validator.unescape(post.title)}</p>
       <p>Subheading: {validator.unescape(post.subtitle)}</p>
-      <p>
-        Created: {dateTimeDisplay(post.created_timestamp)}
-        {` - `}
-        {post.created_timestamp_formatted}
-      </p>
+      <p>Created: {dateTimeDisplay(post.created_timestamp)}</p>
       <br />
       <PostContent />
       <br />
