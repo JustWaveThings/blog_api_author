@@ -20,6 +20,11 @@ const Home = () => {
                 <div>Post Published: {post.published.toString()}</div>
                 <Link to={`/posts/${post._id}/edit`}>Edit</Link>
                 <Link to={`/posts/${post._id}/delete`}>Delete</Link>
+                {post.published ? (
+                  <Link to={`/posts/${post._id}/unpublish`}>Unpublish</Link>
+                ) : (
+                  <Link to={`/posts/${post._id}/publish`}>Publish</Link>
+                )}
               </div>
             </li>
           ))}
