@@ -1,6 +1,7 @@
 import { useLoaderData, Link } from 'react-router-dom';
 import validator from 'validator';
 import publishUnpublish from '../utils/publishUnpublish';
+import deletePost from '../utils/deletePost';
 
 const Home = () => {
   const { posts } = useLoaderData();
@@ -20,7 +21,7 @@ const Home = () => {
                 </Link>
                 <div>Post Published: {post.published.toString()}</div>
                 <Link to={`author/${post._id}/edit`}>Edit</Link>
-                <Link to={`author/${post._id}/delete`}>Delete</Link>
+                <button onClick={() => deletePost(post._id)}>Delete</button>
                 {post.published ? (
                   <button
                     onClick={() => publishUnpublish(post._id, post.published)}>
