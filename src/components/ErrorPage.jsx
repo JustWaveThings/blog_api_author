@@ -1,12 +1,15 @@
-import { Link } from 'react-router-dom';
+import { Link, useRouteError } from 'react-router-dom';
 
-const ErrorPage = () => {
+const ErrorPage = props => {
+  let error = useRouteError();
+  console.log(props);
   return (
     <div className='element'>
-      <h1>Oh no, this route doesnt exist!</h1>
+      <h1>Oops! Something went wrong!</h1>
       <Link to='/'>
         You can go back to the home page by clicking here, though!
       </Link>
+      <pre>{JSON.stringify(error, null, 2)}</pre>
     </div>
   );
 };
