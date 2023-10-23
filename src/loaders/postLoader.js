@@ -1,5 +1,6 @@
 async function postLoader(req) {
-  const res = await fetch(`http://localhost:3000/posts/${req.params.id}`);
+  console.log(req);
+  const res = await fetch(`http://localhost:3000/author/${req.params.id}`);
   const data = await res.json();
   return data;
 }
