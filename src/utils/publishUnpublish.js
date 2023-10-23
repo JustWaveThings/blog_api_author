@@ -1,6 +1,7 @@
 async function publishUnpublish(id, publishBool) {
+  console.log(id, publishBool);
   try {
-    const response = await fetch(`http://localhost:3000/author/post/${id}`, {
+    const response = await fetch(`http://localhost:3000/author/${id}`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
