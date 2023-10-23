@@ -21,7 +21,7 @@ const Router = () => {
           loader: homeLoader,
         },
         {
-          path: '/posts/:id',
+          path: 'author/:id',
           element: <Post />,
           loader: postLoader,
         },
@@ -32,6 +32,7 @@ const Router = () => {
       ],
     },
   ]);
+
   return <RouterProvider router={router} />;
 };
 

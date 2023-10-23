@@ -5,7 +5,7 @@ async function postCreator(
   publishBool = false
 ) {
   try {
-    const response = await fetch(`http://localhost:3000/posts`, {
+    const response = await fetch(`http://localhost:3000/author/post`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
