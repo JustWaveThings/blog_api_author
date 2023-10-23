@@ -8,11 +8,12 @@ async function publishUnpublish(id, publishBool) {
         mode: 'cors',
       },
       body: JSON.stringify({
-        published: publishBool,
+        published: !publishBool,
       }),
     });
     const json = await response.json();
     console.log(json);
+    window.location.reload();
   } catch (error) {
     console.error('Error:', error);
   }
