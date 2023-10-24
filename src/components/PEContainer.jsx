@@ -1,11 +1,11 @@
 import React, { Fragment } from 'react';
+import NewPostCreator from './NewPostCreator';
 
-import PostEditor from './PostEditor';
 function PEContainer() {
   return (
     <Fragment>
       <div>PEContainer</div>
-      <PostEditor />
+      <NewPostCreator />
     </Fragment>
   );
 }
