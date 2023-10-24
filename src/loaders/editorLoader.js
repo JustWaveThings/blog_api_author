@@ -8,3 +8,5 @@ async function editorLoader(req) {
     throw new Error('Failed to load editor data');
   }
 }
+
+export default editorLoader;
