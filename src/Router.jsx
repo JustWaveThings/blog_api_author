@@ -8,6 +8,8 @@ import Post from './components/Post';
 import postLoader from './loaders/postLoader';
 import PEContainer from './components/PEContainer';
 import editorLoader from './loaders/editorLoader';
+import PostEditor from './components/PostEditor';
+import NewPostCreator from './components/NewPostCreator';
 
 const Router = () => {
   const router = createBrowserRouter([
@@ -32,7 +34,7 @@ const Router = () => {
         },
         {
           path: 'editor/:id',
-          element: <PEContainer />,
+          element: <PostEditor />,
           loader: editorLoader,
         },
       ],
