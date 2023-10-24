@@ -1,9 +1,10 @@
-import React, { useRef } from 'react';
+import React, { useRef, Suspense } from 'react';
 import { Editor } from '@tinymce/tinymce-react';
-import { Link } from 'react-router-dom';
+import { Link, useLoaderData, Await } from 'react-router-dom';
 import postCreator from '../utils/postCreator';
 
 export default function PostEditor() {
+  const post = useLoaderData();
   const editorRef = useRef(null);
   function submit(e) {
     e.preventDefault();
@@ -12,12 +13,6 @@ export default function PostEditor() {
     );
     postCreator(editorRef.current.getContent(), title, subtitle, publish);
   }
-
-  const log = () => {
-    if (editorRef.current) {
-      console.log(editorRef.current.getContent());
-    }
-  };
 
   return (
     <form onSubmit={submit}>
@@ -29,43 +24,49 @@ export default function PostEditor() {
         Subtitle:
         <input name='subtitle' type='text' placeholder='Subtitle' />
       </label>
-      <Editor
-        tinymceScriptSrc={'./tinymce/tinymce.min.js'}
-        onInit={(evt, editor) => (editorRef.current = editor)}
-        initialValue='<p>This is the initial content of the editor.</p>'
-        init={{
-          height: 500,
-          menubar: false,
-          plugins: [
-            'advlist',
-            'autolink',
-            'lists',
-            'link',
-            'image',
-            'charmap',
-            'anchor',
-            'searchreplace',
-            'visualblocks',
-            'code',
-            'fullscreen',
-            'insertdatetime',
-            'media',
-            'table',
-            'preview',
-            'help',
-            'wordcount',
-          ],
-          toolbar:
-            'undo redo | blocks | ' +
-            'bold italic forecolor | alignleft aligncenter ' +
-            'alignright alignjustify | bullist numlist outdent indent | ' +
-            'removeformat | help',
-          content_style:
-            'body { font-family:Helvetica,Arial,sans-serif; font-size:12px }',
-          skin: 'oxide-dark',
-          content_css: 'dark',
-        }}
-      />
+
+      <Suspense fallback={<h2>loading editor...</h2>}>
+        <Await resolve={post}>
+          <Editor
+            scriptLoading={{ async: true }}
+            tinymceScriptSrc={'../tinymce/tinymce.min.js'}
+            onInit={(evt, editor) => (editorRef.current = editor)}
+            initialValue='<p>sample text...</p>'
+            init={{
+              height: 500,
+              menubar: false,
+              plugins: [
+                'advlist',
+                'autolink',
+                'lists',
+                'link',
+                'image',
+                'charmap',
+                'anchor',
+                'searchreplace',
+                'visualblocks',
+                'code',
+                'fullscreen',
+                'insertdatetime',
+                'media',
+                'table',
+                'preview',
+                'help',
+                'wordcount',
+              ],
+              toolbar:
+                'undo redo | blocks | ' +
+                'bold italic forecolor | alignleft aligncenter ' +
+                'alignright alignjustify | bullist numlist outdent indent | ' +
+                'removeformat | help',
+              content_style:
+                'body { font-family:Helvetica,Arial,sans-serif; font-size:12px }',
+              skin: 'oxide-dark',
+              content_css: 'dark',
+            }}
+          />
+        </Await>
+      </Suspense>
       <Link to='/'>Go to Editor Home </Link>
       <label>
         Publish:
