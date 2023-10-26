@@ -3,8 +3,6 @@ import { Editor } from '@tinymce/tinymce-react';
 import { Link } from 'react-router-dom';
 import postCreator from '../utils/postCreator';
 
-// simple test post
-
 export default function NewPostCreator() {
   const editorRef = useRef(null);
   function submit(e) {
