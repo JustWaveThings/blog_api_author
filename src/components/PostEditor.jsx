@@ -1,7 +1,6 @@
 import React, { useRef, Suspense } from 'react';
 import { Editor } from '@tinymce/tinymce-react';
 import { Link, useLoaderData, Await } from 'react-router-dom';
-import postCreator from '../utils/postCreator';
 
 export default function PostEditor() {
   const post = useLoaderData();
@@ -18,11 +17,21 @@ export default function PostEditor() {
     <form onSubmit={submit}>
       <label>
         Title:
-        <input name='title' type='text' placeholder='Title' />
+        <input
+          name='title'
+          type='text'
+          placeholder='Title'
+          defaultValue={post.title}
+        />
       </label>
       <label>
         Subtitle:
-        <input name='subtitle' type='text' placeholder='Subtitle' />
+        <input
+          name='subtitle'
+          type='text'
+          placeholder='Subtitle'
+          defaultValue={post.subtitle}
+        />
       </label>
 
       <Suspense fallback={<h2>loading editor...</h2>}>
@@ -31,7 +40,7 @@ export default function PostEditor() {
             scriptLoading={{ async: true }}
             tinymceScriptSrc={'../tinymce/tinymce.min.js'}
             onInit={(evt, editor) => (editorRef.current = editor)}
-            initialValue='<p>sample text...</p>'
+            initialValue={post.body}
             init={{
               height: 500,
               menubar: false,
