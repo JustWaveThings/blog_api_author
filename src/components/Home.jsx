@@ -9,7 +9,7 @@ const Home = () => {
 
   return (
     <div className='element'>
-      <h1>Blog Editing Home</h1>
+      <h1>Post List</h1>
       {posts && (
         <ul>
           {posts.map(post => (
@@ -39,7 +39,6 @@ const Home = () => {
           ))}
         </ul>
       )}
-      <Link to='editor'>Go to Post Editor</Link>
     </div>
   );
 };
