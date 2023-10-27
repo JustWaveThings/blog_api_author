@@ -1,39 +1,38 @@
 import React, { useRef, Suspense } from 'react';
 import { Editor } from '@tinymce/tinymce-react';
-import { Link, useLoaderData, Await } from 'react-router-dom';
+import { Link, useLoaderData, Await, useNavigate } from 'react-router-dom';
+import postEditor from '../utils/postEditor';
 
 export default function PostEditor() {
   const post = useLoaderData();
   const editorRef = useRef(null);
-  function submit(e) {
+  const navigate = useNavigate();
+
+  async function submit(e) {
     e.preventDefault();
     const { title, subtitle, publish } = Object.fromEntries(
       new FormData(e.target)
     );
-    postCreator(editorRef.current.getContent(), title, subtitle, publish);
+    await postEditor(
+      editorRef.current.getContent(),
+      title,
+      subtitle,
+      publish,
+      post._id
+    );
+    navigate(`/author/${post._id}`);
   }
 
   return (
     <form onSubmit={submit}>
       <label>
         Title:
-        <input
-          name='title'
-          type='text'
-          placeholder='Title'
-          defaultValue={post.title}
-        />
+        <input name='title' type='text' defaultValue={post.title} />
       </label>
       <label>
         Subtitle:
-        <input
-          name='subtitle'
-          type='text'
-          placeholder='Subtitle'
-          defaultValue={post.subtitle}
-        />
+        <input name='subtitle' type='text' defaultValue={post.subtitle} />
       </label>
-
       <Suspense fallback={<h2>loading editor...</h2>}>
         <Await resolve={post}>
           <Editor
@@ -76,12 +75,20 @@ export default function PostEditor() {
           />
         </Await>
       </Suspense>
-      <Link to='/'>Go to Editor Home </Link>
-      <label>
-        Publish:
-        <input type='checkbox' name='publish' value='true' />
-      </label>
-      <button type='submit'>Submit</button>
+      <Link to='/'>Post List</Link>
+      <span> | </span>
+      {!post.published && (
+        <>
+          <label>
+            Publish:
+            <input type='checkbox' name='publish' value='true' />
+          </label>
+          <span> | </span>
+        </>
+      )}
+      <Link to={`/author/${post._id}`}>Cancel</Link>
+      <span> | </span>
+      <button type='submit'>Update Post</button>
     </form>
   );
 }
