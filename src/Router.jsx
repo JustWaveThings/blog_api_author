@@ -1,4 +1,8 @@
-import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import {
+  RouterProvider,
+  createBrowserRouter,
+  redirect,
+} from 'react-router-dom';
 import App from './App';
 import ErrorPage from './components/ErrorPage';
 
@@ -9,7 +13,6 @@ import postLoader from './loaders/postLoader';
 import PEContainer from './components/PEContainer';
 import editorLoader from './loaders/editorLoader';
 import PostEditor from './components/PostEditor';
-import NewPostCreator from './components/NewPostCreator';
 
 const Router = () => {
   const router = createBrowserRouter([
