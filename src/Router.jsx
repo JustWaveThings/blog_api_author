@@ -1,4 +1,8 @@
-import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import {
+  RouterProvider,
+  createBrowserRouter,
+  redirect,
+} from 'react-router-dom';
 import App from './App';
 import ErrorPage from './components/ErrorPage';
 
@@ -7,6 +11,8 @@ import homeLoader from './loaders/homeLoader';
 import Post from './components/Post';
 import postLoader from './loaders/postLoader';
 import PEContainer from './components/PEContainer';
+import editorLoader from './loaders/editorLoader';
+import PostEditor from './components/PostEditor';
 
 const Router = () => {
   const router = createBrowserRouter([
@@ -26,8 +32,13 @@ const Router = () => {
           loader: postLoader,
         },
         {
-          path: '/editor',
+          path: 'editor',
           element: <PEContainer />,
+        },
+        {
+          path: 'editor/:id',
+          element: <PostEditor />,
+          loader: editorLoader,
         },
       ],
     },

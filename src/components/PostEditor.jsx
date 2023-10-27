@@ -1,77 +1,94 @@
-import React, { useRef } from 'react';
+import React, { useRef, Suspense } from 'react';
 import { Editor } from '@tinymce/tinymce-react';
-import { Link } from 'react-router-dom';
-import postCreator from '../utils/postCreator';
+import { Link, useLoaderData, Await, useNavigate } from 'react-router-dom';
+import postEditor from '../utils/postEditor';
 
 export default function PostEditor() {
+  const post = useLoaderData();
   const editorRef = useRef(null);
-  function submit(e) {
+  const navigate = useNavigate();
+
+  async function submit(e) {
     e.preventDefault();
     const { title, subtitle, publish } = Object.fromEntries(
       new FormData(e.target)
     );
-    postCreator(editorRef.current.getContent(), title, subtitle, publish);
+    await postEditor(
+      editorRef.current.getContent(),
+      title,
+      subtitle,
+      publish,
+      post._id
+    );
+    navigate(`/author/${post._id}`);
   }
-
-  const log = () => {
-    if (editorRef.current) {
-      console.log(editorRef.current.getContent());
-    }
-  };
 
   return (
     <form onSubmit={submit}>
       <label>
         Title:
-        <input name='title' type='text' placeholder='Title' />
+        <input name='title' type='text' defaultValue={post.title} />
       </label>
       <label>
         Subtitle:
-        <input name='subtitle' type='text' placeholder='Subtitle' />
+        <input name='subtitle' type='text' defaultValue={post.subtitle} />
       </label>
-      <Editor
-        tinymceScriptSrc={'./tinymce/tinymce.min.js'}
-        onInit={(evt, editor) => (editorRef.current = editor)}
-        initialValue='<p>This is the initial content of the editor.</p>'
-        init={{
-          height: 500,
-          menubar: false,
-          plugins: [
-            'advlist',
-            'autolink',
-            'lists',
-            'link',
-            'image',
-            'charmap',
-            'anchor',
-            'searchreplace',
-            'visualblocks',
-            'code',
-            'fullscreen',
-            'insertdatetime',
-            'media',
-            'table',
-            'preview',
-            'help',
-            'wordcount',
-          ],
-          toolbar:
-            'undo redo | blocks | ' +
-            'bold italic forecolor | alignleft aligncenter ' +
-            'alignright alignjustify | bullist numlist outdent indent | ' +
-            'removeformat | help',
-          content_style:
-            'body { font-family:Helvetica,Arial,sans-serif; font-size:12px }',
-          skin: 'oxide-dark',
-          content_css: 'dark',
-        }}
-      />
-      <Link to='/'>Go to Editor Home </Link>
-      <label>
-        Publish:
-        <input type='checkbox' name='publish' value='true' />
-      </label>
-      <button type='submit'>Submit</button>
+      <Suspense fallback={<h2>loading editor...</h2>}>
+        <Await resolve={post}>
+          <Editor
+            scriptLoading={{ async: true }}
+            tinymceScriptSrc={'../tinymce/tinymce.min.js'}
+            onInit={(evt, editor) => (editorRef.current = editor)}
+            initialValue={post.body}
+            init={{
+              height: 500,
+              menubar: false,
+              plugins: [
+                'advlist',
+                'autolink',
+                'lists',
+                'link',
+                'image',
+                'charmap',
+                'anchor',
+                'searchreplace',
+                'visualblocks',
+                'code',
+                'fullscreen',
+                'insertdatetime',
+                'media',
+                'table',
+                'preview',
+                'help',
+                'wordcount',
+              ],
+              toolbar:
+                'undo redo | blocks | ' +
+                'bold italic forecolor | alignleft aligncenter ' +
+                'alignright alignjustify | bullist numlist outdent indent | ' +
+                'removeformat | help',
+              content_style:
+                'body { font-family:Helvetica,Arial,sans-serif; font-size:12px }',
+              skin: 'oxide-dark',
+              content_css: 'dark',
+            }}
+          />
+        </Await>
+      </Suspense>
+      <Link to='/'>Post List</Link>
+      <span> | </span>
+      {!post.published && (
+        <>
+          <label>
+            Publish:
+            <input type='checkbox' name='publish' value='true' />
+          </label>
+          <span> | </span>
+        </>
+      )}
+      <Link to={`/author/${post._id}`}>Cancel</Link>
+      <span> | </span>
+      <button type='submit'>Update Post</button>
     </form>
   );
 }
