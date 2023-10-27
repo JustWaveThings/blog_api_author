@@ -2,6 +2,7 @@ import { useLoaderData, Link } from 'react-router-dom';
 import validator from 'validator';
 import PostContent from './PostContent';
 import { dateTimeDisplay } from '../utils/dateTimeDisplay';
+import deleteComment from '../utils/deleteComment';
 
 function Post() {
   const post = useLoaderData();
@@ -27,6 +28,12 @@ function Post() {
           <p className='textarea'>
             Comment: {validator.unescape(comment.body)}
           </p>
+          <button
+            onClick={() => {
+              deleteComment(post._id, comment._id);
+            }}>
+            Delete Comment
+          </button>
         </div>
       ))}
       <br />
