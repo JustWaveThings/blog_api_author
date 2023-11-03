@@ -1,7 +1,9 @@
+import { redirect } from 'react-router-dom';
+
 async function login(authData) {
   console.log(authData);
 
-  const response = await fetch(`http://localhost:3000/author/login`, {
+  const response = await fetch(`http://localhost:3000/users/login`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -21,6 +23,8 @@ async function login(authData) {
       status: response.status,
     };
   }
+
+  redirect('/');
 }
 
 export default login;
