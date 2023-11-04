@@ -6,7 +6,6 @@ async function homeLoader() {
       headers: {
         'Content-Type': 'application/json',
         mode: 'cors',
-        'Access-Control-Allow-Credentials': 'true',
       },
     });
     if (!response.ok) {
