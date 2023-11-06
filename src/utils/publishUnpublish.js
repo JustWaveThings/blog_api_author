@@ -3,6 +3,7 @@ async function publishUnpublish(id, publishBool) {
   try {
     const response = await fetch(`http://localhost:3000/author/${id}`, {
       method: 'PATCH',
+      credentials: 'include',
       headers: {
         'Content-Type': 'application/json',
         mode: 'cors',

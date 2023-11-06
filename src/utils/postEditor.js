@@ -2,6 +2,7 @@ async function postEditor(postData, titleData, subtitleData, publishBool, id) {
   try {
     const response = await fetch(`http://localhost:3000/author/${id}`, {
       method: 'PUT',
+      credentials: 'include',
       headers: {
         'Content-Type': 'application/json',
         mode: 'cors',
