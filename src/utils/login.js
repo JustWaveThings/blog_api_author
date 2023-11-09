@@ -1,29 +1,26 @@
-import { redirect } from 'react-router-dom';
-
 async function login(authData) {
-  console.log(authData);
+  try {
+    const response = await fetch(`http://localhost:3000/users/login`, {
+      method: 'POST',
+      credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json',
+        mode: 'cors',
+      },
+      body: JSON.stringify({
+        username: authData.username,
+        password: authData.password,
+      }),
+    });
 
-  const response = await fetch(`http://localhost:3000/users`, {
-    method: 'POST',
-    credentials: 'include',
-    headers: {
-      'Content-Type': 'application/json',
-      mode: 'cors',
-    },
-    body: JSON.stringify({
-      username: authData.username,
-      password: authData.password,
-      admin: true,
-    }),
-  });
-  const data = await response.json();
-  console.log(data);
-  if (!response.ok) {
-    throw {
-      message: data.message,
-      statusText: response.statusText,
-      status: response.status,
-    };
+    if (!response.ok) {
+      throw new Error(response.statusText);
+    }
+    const data = await response.json();
+    console.log(data);
+    return data;
+  } catch (error) {
+    console.log(error);
   }
 }
 

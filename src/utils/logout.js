@@ -2,7 +2,7 @@ import { redirect } from 'react-router-dom';
 
 async function logout() {
   const response = await fetch(`http://localhost:3000/users/logout`, {
-    method: 'GET',
+    method: 'DELETE',
     credentials: 'include',
     headers: {
       'Content-Type': 'application/json',

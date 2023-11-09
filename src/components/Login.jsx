@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import { Navigate } from 'react-router-dom';
 import login from '../utils/login';
 
 function Login() {
+  console.log(document.cookie);
   const [loginData, setLoginData] = useState({ username: '', password: '' });
 
   const handleInputChange = e => {
@@ -12,11 +14,10 @@ function Login() {
     }));
   };
 
-  const handleSubmit = e => {
+  function handleSubmit(e) {
     e.preventDefault();
-    console.log(loginData);
     login(loginData);
-  };
+  }
 
   return (
     <div className='element'>
@@ -26,7 +27,7 @@ function Login() {
         Login to create, edit, delete, publish and unpublish blog posts, as well
         as remove comments.
       </p>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={e => handleSubmit(e)}>
         <label>
           Username:
           <input

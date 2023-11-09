@@ -10,7 +10,7 @@ import PEContainer from './components/PEContainer';
 import editorLoader from './loaders/editorLoader';
 import PostEditor from './components/PostEditor';
 import Login from './components/Login';
-import authRequired from './utils/authRequired';
+import Signup from './components/SignUp';
 
 const Router = () => {
   const router = createBrowserRouter([
@@ -20,32 +20,35 @@ const Router = () => {
       errorElement: <ErrorPage />,
       children: [
         {
-          index: true,
+          path: '/',
           element: <Home />,
-          loader: async ({ request }) => authRequired(request, homeLoader),
+          loader: async () => await homeLoader(),
         },
         {
           path: 'author/:id',
           element: <Post />,
-          loader: async ({ request, params }) =>
-            await authRequired(request, postLoader, params),
+          loader: async params => await postLoader(params),
         },
         {
           path: 'editor',
           element: <PEContainer />,
-          loader: async ({ request }) => authRequired(request),
         },
         {
           path: 'editor/:id',
           element: <PostEditor />,
-          loader: async ({ request, params }) =>
-            authRequired(request, editorLoader, params),
+          loader: async params => await editorLoader(params),
         },
       ],
     },
     {
       path: 'login',
       element: <Login />,
+      errorElement: <ErrorPage />,
+    },
+    {
+      path: 'signup',
+      element: <Signup />,
+      errorElement: <ErrorPage />,
     },
   ]);
 
