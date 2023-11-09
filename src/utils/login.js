@@ -12,13 +12,8 @@ async function login(authData) {
         password: authData.password,
       }),
     });
-
-    if (!response.ok) {
-      throw new Error(response.statusText);
-    }
-    const data = await response.json();
-    console.log(data);
-    return data;
+    const { ok, status } = response;
+    return { ok, status };
   } catch (error) {
     console.log(error);
   }
