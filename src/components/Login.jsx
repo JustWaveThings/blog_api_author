@@ -3,7 +3,6 @@ import { Navigate } from 'react-router-dom';
 import login from '../utils/login';
 
 function Login() {
-  console.log(document.cookie);
   const [loginData, setLoginData] = useState({ username: '', password: '' });
 
   const handleInputChange = e => {
@@ -14,15 +13,22 @@ function Login() {
     }));
   };
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
-    login(loginData);
+    const { status, ok } = await login(loginData);
+    console.log(status, ok);
+    if (ok) {
+      // logic to set login state to true
+      console.log(' this should show that we are logged in on the FE');
+    } else {
+      // logic to set login state to false
+      console.log(' this should show that we are not logged in on the FE');
+    }
   }
 
   return (
     <div className='element'>
       <h1>Blog Author Dashboard</h1>
-
       <p>
         Login to create, edit, delete, publish and unpublish blog posts, as well
         as remove comments.
