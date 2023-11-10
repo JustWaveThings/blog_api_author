@@ -10,14 +10,14 @@ async function logout() {
     },
   });
   const data = await response.json();
+  const { ok } = response;
   console.log(data);
+
   if (!response.ok) {
-    throw {
-      message: data.message,
-      statusText: response.statusText,
-      status: response.status,
-    };
+    throw new Error(response.status);
   }
+
+  return { ok, data };
 }
 
 export default logout;
