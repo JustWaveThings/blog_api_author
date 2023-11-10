@@ -16,13 +16,14 @@ function Login() {
   async function handleSubmit(e) {
     e.preventDefault();
     const { status, ok } = await login(loginData);
-    console.log(status, ok);
     if (ok) {
       // logic to set login state to true
-      console.log(' this should show that we are logged in on the FE');
+      console.log(`${status} this should show that we are logged in on the FE`);
     } else {
       // logic to set login state to false
-      console.log(' this should show that we are not logged in on the FE');
+      console.log(
+        `${status}  this should show that we are not logged in on the FE`
+      );
     }
   }
 
