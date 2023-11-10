@@ -15,14 +15,15 @@ function Login() {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    const { status, ok } = await login(loginData);
-    if (ok) {
-      // logic to set login state to true
-      console.log(`${status} this should show that we are logged in on the FE`);
-    } else {
-      // logic to set login state to false
+    const { response, username } = await login(loginData);
+
+    if (response.ok) {
       console.log(
-        `${status}  this should show that we are not logged in on the FE`
+        `${response.status} http code. ${username} should be logged into the frontend author dashboard`
+      );
+    } else {
+      console.log(
+        `${response.status} http code. This should show that we are not logged in on the FE`
       );
     }
   }

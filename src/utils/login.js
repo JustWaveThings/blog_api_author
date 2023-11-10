@@ -12,7 +12,9 @@ async function login(authData) {
         password: authData.password,
       }),
     });
-    return response;
+    const { username } = await response.json();
+
+    return { response, username };
   } catch (error) {
     console.log(error);
   }
