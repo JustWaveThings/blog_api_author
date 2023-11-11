@@ -11,6 +11,7 @@ import editorLoader from './loaders/editorLoader';
 import PostEditor from './components/PostEditor';
 import Login from './components/Login';
 import Signup from './components/SignUp';
+import { SpinnerDiamond } from 'spinners-react';
 
 const Router = () => {
   const router = createBrowserRouter([
@@ -52,7 +53,9 @@ const Router = () => {
     },
   ]);
 
-  return <RouterProvider router={router} />;
+  return (
+    <RouterProvider router={router} fallbackElement={<SpinnerDiamond />} />
+  );
 };
 
 export default Router;
