@@ -54,7 +54,10 @@ const Router = () => {
   ]);
 
   return (
-    <RouterProvider router={router} fallbackElement={<SpinnerDiamond />} />
+    <RouterProvider
+      router={router}
+      fallbackElement={<SpinnerDiamond enabled={true} />}
+    />
   );
 };
 
