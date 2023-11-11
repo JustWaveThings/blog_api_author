@@ -7,6 +7,7 @@ async function postCreator(
   try {
     const response = await fetch(`http://localhost:3000/author/post`, {
       method: 'POST',
+      credentials: 'include',
       headers: {
         'Content-Type': 'application/json',
         mode: 'cors',

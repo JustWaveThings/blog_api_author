@@ -2,7 +2,14 @@ import validator from 'validator';
 
 async function editorLoader(params) {
   try {
-    const res = await fetch(`http://localhost:3000/author/${params.id}`);
+    const res = await fetch(`http://localhost:3000/author/${params.id}`, {
+      method: 'GET',
+      credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json',
+        mode: 'cors',
+      },
+    });
     const data = await res.json();
     data.body = validator.unescape(data.body);
     data.title = validator.unescape(data.title);

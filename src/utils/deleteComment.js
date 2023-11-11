@@ -4,6 +4,7 @@ async function deleteComment(id, commentId) {
       `http://localhost:3000/author/${id}/comment/${commentId}`,
       {
         method: 'DELETE',
+        credentials: 'include',
         headers: {
           'Content-Type': 'application/json',
           mode: 'cors',

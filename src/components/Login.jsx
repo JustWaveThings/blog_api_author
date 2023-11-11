@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Navigate } from 'react-router-dom';
 import login from '../utils/login';
 
 function Login() {
@@ -12,21 +13,29 @@ function Login() {
     }));
   };
 
-  const handleSubmit = e => {
+  async function handleSubmit(e) {
     e.preventDefault();
-    console.log(loginData);
-    login(loginData);
-  };
+    const { response, username } = await login(loginData);
+
+    if (response.ok) {
+      console.log(
+        `${response.status} http code. ${username} should be logged into the frontend author dashboard`
+      );
+    } else {
+      console.log(
+        `${response.status} http code. This should show that we are not logged in on the FE`
+      );
+    }
+  }
 
   return (
     <div className='element'>
       <h1>Blog Author Dashboard</h1>
-
       <p>
         Login to create, edit, delete, publish and unpublish blog posts, as well
         as remove comments.
       </p>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={e => handleSubmit(e)}>
         <label>
           Username:
           <input
