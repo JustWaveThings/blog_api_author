@@ -4,7 +4,7 @@ import login from '../utils/login';
 
 function Login() {
   const [loginData, setLoginData] = useState({ username: '', password: '' });
-
+  const [loginState, setLoginState] = useState(false);
   const handleInputChange = e => {
     const { name, value } = e.target;
     setLoginData(prevState => ({
@@ -31,6 +31,7 @@ function Login() {
   return (
     <div className='element'>
       <h1>Blog Author Dashboard</h1>
+      {loginState && <h2> user is logged in </h2>}
       <p>
         Login to create, edit, delete, publish and unpublish blog posts, as well
         as remove comments.
