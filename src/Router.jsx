@@ -1,8 +1,8 @@
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import App from './App';
 import ErrorPage from './components/ErrorPage';
-import Home from './components/Home';
-import { allPostFetch, postFetch, editorFetch } from '../src/utils/api.js';
+import Home, { loader as postLoader } from './components/Home';
+import { postFetch, editorFetch } from '../src/utils/api.js';
 import Post from './components/Post';
 import PEContainer from './components/PEContainer';
 import PostEditor from './components/PostEditor';
@@ -20,7 +20,7 @@ const Router = () => {
         {
           path: '/',
           element: <Home />,
-          loader: allPostFetch,
+          loader: postLoader,
           errorElement: <ErrorPage />,
         },
         {
