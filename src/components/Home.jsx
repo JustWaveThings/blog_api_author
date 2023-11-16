@@ -11,7 +11,7 @@ export function loader() {
 }
 
 const Home = () => {
-  const posts = useLoaderData();
+  const { posts } = useLoaderData();
 
   return (
     <div className='element'>
