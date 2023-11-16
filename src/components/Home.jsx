@@ -4,9 +4,14 @@ import publishUnpublish from '../utils/publishUnpublish';
 import deletePost from '../utils/deletePost';
 import editPost from '../utils/editPost';
 import login from '../utils/login';
+import { postFetch } from '../utils/api';
+
+export function loader() {
+  return postFetch();
+}
 
 const Home = () => {
-  const { posts } = useLoaderData();
+  const posts = useLoaderData();
 
   return (
     <div className='element'>
