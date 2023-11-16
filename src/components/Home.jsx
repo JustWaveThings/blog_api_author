@@ -12,7 +12,7 @@ export function loader() {
   return defer({ posts: postFetch() });
 }
 
-const Home = () => {
+export const Home = () => {
   const dataPromise = useLoaderData();
 
   function renderHomeElements({ posts }) {
@@ -52,5 +52,3 @@ const Home = () => {
     </div>
   );
 };
-
-export default Home;

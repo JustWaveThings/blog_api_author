@@ -11,7 +11,7 @@ export function loader({ params }) {
   return defer({ post: postFetch(params.id) });
 }
 
-function Post() {
+export function Post() {
   const dataPromise = useLoaderData();
 
   function renderPostElements(post) {
@@ -62,5 +62,3 @@ function Post() {
     </Suspense>
   );
 }
-
-export default Post;
