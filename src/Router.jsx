@@ -1,7 +1,6 @@
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import App from './App';
 import ErrorPage from './components/ErrorPage';
-
 import Home from './components/Home';
 import { allPostFetch, postFetch, editorFetch } from '../src/utils/api.js';
 import Post from './components/Post';
@@ -21,12 +20,14 @@ const Router = () => {
         {
           path: '/',
           element: <Home />,
-          loader: async () => await allPostFetch(),
+          loader: allPostFetch,
+          errorElement: <ErrorPage />,
         },
         {
           path: 'author/:id',
           element: <Post />,
           loader: postFetch,
+          errorElement: <ErrorPage />,
         },
         {
           path: 'editor',
@@ -35,7 +36,8 @@ const Router = () => {
         {
           path: 'editor/:id',
           element: <PostEditor />,
-          loader: async params => await editorFetch(params),
+          loader: editorFetch,
+          errorElement: <ErrorPage />,
         },
       ],
     },
