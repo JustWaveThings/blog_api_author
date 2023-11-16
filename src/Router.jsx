@@ -3,11 +3,9 @@ import App from './App';
 import ErrorPage from './components/ErrorPage';
 
 import Home from './components/Home';
-import { allPostFetch, postFetch } from '../src/utils/api.js';
+import { allPostFetch, postFetch, editorFetch } from '../src/utils/api.js';
 import Post from './components/Post';
-
 import PEContainer from './components/PEContainer';
-import editorLoader from './loaders/editorLoader';
 import PostEditor from './components/PostEditor';
 import Login from './components/Login';
 import Signup from './components/SignUp';
@@ -37,7 +35,7 @@ const Router = () => {
         {
           path: 'editor/:id',
           element: <PostEditor />,
-          loader: async params => await editorLoader(params),
+          loader: async params => await editorFetch(params),
         },
       ],
     },
