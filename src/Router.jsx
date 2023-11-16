@@ -3,9 +3,9 @@ import App from './App';
 import ErrorPage from './components/ErrorPage';
 
 import Home from './components/Home';
-import homeLoader from './loaders/homeLoader';
+import { allPostFetch, postFetch } from '../src/utils/api.js';
 import Post from './components/Post';
-import postLoader from './loaders/postLoader';
+
 import PEContainer from './components/PEContainer';
 import editorLoader from './loaders/editorLoader';
 import PostEditor from './components/PostEditor';
@@ -23,12 +23,12 @@ const Router = () => {
         {
           path: '/',
           element: <Home />,
-          loader: async () => await homeLoader(),
+          loader: async () => await allPostFetch(),
         },
         {
           path: 'author/:id',
           element: <Post />,
-          loader: postLoader,
+          loader: postFetch,
         },
         {
           path: 'editor',

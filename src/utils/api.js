@@ -1,6 +1,6 @@
 // this file is used to make api calls to the backend using fetch
 
-export async function allPostLoader() {
+export async function allPostFetch() {
   try {
     const response = await fetch('http://localhost:3000/author/', {
       method: 'GET',
@@ -19,4 +19,17 @@ export async function allPostLoader() {
   } catch (error) {
     console.log(error);
   }
+}
+
+export async function postFetch(params) {
+  const res = await fetch(`http://localhost:3000/author/${params.id}`, {
+    method: 'GET',
+    credentials: 'include',
+    headers: {
+      'Content-Type': 'application/json',
+      mode: 'cors',
+    },
+  });
+  const data = await res.json();
+  return data;
 }
