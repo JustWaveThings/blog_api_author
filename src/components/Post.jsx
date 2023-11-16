@@ -3,6 +3,11 @@ import validator from 'validator';
 import PostContent from './PostContent';
 import { dateTimeDisplay } from '../utils/dateTimeDisplay';
 import deleteComment from '../utils/deleteComment';
+import { postFetch } from '../utils/api';
+
+export function loader({ params }) {
+  return postFetch(params.id);
+}
 
 function Post() {
   const post = useLoaderData();
