@@ -1,11 +1,10 @@
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import App from './App';
 import ErrorPage from './components/ErrorPage';
-import Home, { loader as postLoader } from './components/Home';
-import { postFetch, editorFetch } from '../src/utils/api.js';
-import Post from './components/Post';
+import Home, { loader as postsLoader } from './components/Home';
+import Post, { loader as postLoader } from './components/Post';
 import PEContainer from './components/PEContainer';
-import PostEditor from './components/PostEditor';
+import PostEditor, { loader as editorLoader } from './components/PostEditor';
 import Login from './components/Login';
 import Signup from './components/SignUp';
 import { SpinnerDiamond } from 'spinners-react';
@@ -20,13 +19,13 @@ const Router = () => {
         {
           path: '/',
           element: <Home />,
-          loader: postLoader,
+          loader: postsLoader,
           errorElement: <ErrorPage />,
         },
         {
           path: 'author/:id',
           element: <Post />,
-          loader: postFetch,
+          loader: postLoader,
           errorElement: <ErrorPage />,
         },
         {
@@ -36,7 +35,7 @@ const Router = () => {
         {
           path: 'editor/:id',
           element: <PostEditor />,
-          loader: editorFetch,
+          loader: editorLoader,
           errorElement: <ErrorPage />,
         },
       ],
