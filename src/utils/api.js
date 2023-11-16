@@ -1,6 +1,9 @@
 import validator from 'validator'; // used by editorFetch
 
 export async function postFetch(id) {
+  // TODO DO NOT FORGET TO REMOVE THIS
+  await new Promise(r => setTimeout(r, 2000));
+
   const url = id
     ? `http://localhost:3000/author/${id}`
     : 'http://localhost:3000/author/';
@@ -29,6 +32,9 @@ export async function postFetch(id) {
 }
 
 export async function editorFetch(id) {
+  // TODO DO NOT FORGET TO REMOVE THIS
+  await new Promise(r => setTimeout(r, 2000));
+
   try {
     const res = await fetch(`http://localhost:3000/author/${id}`, {
       method: 'GET',
@@ -55,6 +61,8 @@ export async function postEditor(
   publishBool,
   id
 ) {
+  // TODO DO NOT FORGET TO REMOVE THIS
+  await new Promise(r => setTimeout(r, 2000));
   try {
     const response = await fetch(`http://localhost:3000/author/${id}`, {
       method: 'PUT',
