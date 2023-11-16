@@ -20,16 +20,17 @@ export async function postFetch(id) {
         status: res.status,
       };
     }
-    const data = await res.json();
-    return data.posts;
+    // destruture the returned object in the receiving function
+    // if multiple posts are returned
+    return await res.json();
   } catch (error) {
     return error;
   }
 }
 
-export async function editorFetch(params) {
+export async function editorFetch(id) {
   try {
-    const res = await fetch(`http://localhost:3000/author/${params.id}`, {
+    const res = await fetch(`http://localhost:3000/author/${id}`, {
       method: 'GET',
       credentials: 'include',
       headers: {
@@ -43,10 +44,34 @@ export async function editorFetch(params) {
     data.subtitle = validator.unescape(data.subtitle);
     return data;
   } catch (error) {
-    throw {
-      statusText: res.statusText,
-      status: res.status,
-      error: error.message,
-    };
+    return error;
+  }
+}
+
+export async function postEditor(
+  postData,
+  titleData,
+  subtitleData,
+  publishBool,
+  id
+) {
+  try {
+    const response = await fetch(`http://localhost:3000/author/${id}`, {
+      method: 'PUT',
+      credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json',
+        mode: 'cors',
+      },
+      body: JSON.stringify({
+        body: postData,
+        title: titleData,
+        subtitle: subtitleData,
+        published: publishBool,
+      }),
+    });
+    const json = await response.json();
+  } catch (error) {
+    console.error('Error:', error);
   }
 }
