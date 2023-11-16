@@ -2,7 +2,7 @@ import validator from 'validator'; // used by editorFetch
 
 export async function postFetch(id) {
   // TODO DO NOT FORGET TO REMOVE THIS
-  await new Promise(r => setTimeout(r, 2000));
+  // await new Promise(r => setTimeout(r, 2000));
 
   const url = id
     ? `http://localhost:3000/author/${id}`
