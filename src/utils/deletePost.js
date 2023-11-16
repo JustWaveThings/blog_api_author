@@ -8,8 +8,7 @@ async function deletePost(id) {
         mode: 'cors',
       },
     });
-    const json = await response.json();
-    console.log(json);
+    await response.json();
     window.location.reload();
   } catch (error) {
     console.error('Error:', error);

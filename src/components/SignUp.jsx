@@ -14,7 +14,6 @@ function Signup() {
 
   const handleSubmit = e => {
     e.preventDefault();
-    console.log(signupData);
     signup(signupData);
   };
 

@@ -11,8 +11,8 @@ async function deleteComment(id, commentId) {
         },
       }
     );
-    const json = await response.json();
-    console.log(json);
+    return await response.json();
+
     window.location.reload();
   } catch (error) {
     console.error('Error:', error);

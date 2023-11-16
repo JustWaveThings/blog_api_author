@@ -17,7 +17,6 @@ export function loader({ params }) {
 export const PostEditor = () => {
   const dataPromise = useLoaderData();
   function renderEditorElements(post) {
-    console.log(post);
     const editorRef = useRef(null);
     const navigate = useNavigate();
 
