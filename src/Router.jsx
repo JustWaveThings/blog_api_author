@@ -28,7 +28,7 @@ const Router = () => {
         {
           path: 'author/:id',
           element: <Post />,
-          loader: async params => await postLoader(params),
+          loader: postLoader,
         },
         {
           path: 'editor',

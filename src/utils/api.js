@@ -1,4 +1,6 @@
-async function homeLoader() {
+// this file is used to make api calls to the backend using fetch
+
+export async function allPostLoader() {
   try {
     const response = await fetch('http://localhost:3000/author/', {
       method: 'GET',
@@ -18,5 +20,3 @@ async function homeLoader() {
     console.log(error);
   }
 }
-
-export default homeLoader;
