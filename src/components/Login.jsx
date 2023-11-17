@@ -1,8 +1,18 @@
-import React, { useState } from 'react';
-import { Navigate, Form } from 'react-router-dom';
+import React from 'react';
+import { useNavigate, Form, useActionData } from 'react-router-dom';
 import login from '../utils/login';
 
+export const action = async ({ request }) => {
+  const form = await request.formData();
+  const username = form.get('username');
+  const password = form.get('password');
+  return login({ username, password });
+};
+
 function Login() {
+  const actionData = useActionData();
+  console.log(actionData);
+
   return (
     <div className='element'>
       <h1>Blog Author Dashboard</h1>
@@ -27,6 +37,7 @@ function Login() {
           placeholder='password'
           autoComplete='password'
         />
+
         <br />
         <button type='submit'>Log In</button>
       </Form>
