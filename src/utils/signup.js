@@ -1,8 +1,6 @@
 import { redirect } from 'react-router-dom';
 
 async function signup(authData) {
-  console.log(authData);
-
   const response = await fetch(`http://localhost:3000/users/signup`, {
     method: 'POST',
     credentials: 'include',
@@ -17,7 +15,7 @@ async function signup(authData) {
     }),
   });
   const data = await response.json();
-  console.log(data);
+
   if (!response.ok) {
     throw {
       message: data.message,

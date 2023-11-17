@@ -11,7 +11,6 @@ async function logout() {
   });
   const data = await response.json();
   const { ok } = response;
-  console.log(data);
 
   if (!response.ok) {
     throw new Error(response.status);
