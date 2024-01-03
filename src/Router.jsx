@@ -1,4 +1,4 @@
-import { RouterProvider, createBrowserRouter, defer } from 'react-router-dom';
+import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import App from './App';
 import ErrorPage from './components/ErrorPage';
 import { Home, loader as postsLoader } from './components/Home';
