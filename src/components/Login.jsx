@@ -6,7 +6,12 @@ export const action = async ({ request }) => {
   const form = await request.formData();
   const username = form.get('username');
   const password = form.get('password');
-  return login({ username, password });
+  const { response } = await login({ username, password });
+
+  if (response?.ok) {
+    return response;
+  }
+  return null;
 };
 
 function Login() {
