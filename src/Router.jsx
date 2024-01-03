@@ -1,11 +1,11 @@
-import { RouterProvider, createBrowserRouter, defer } from 'react-router-dom';
+import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import App from './App';
 import ErrorPage from './components/ErrorPage';
 import { Home, loader as postsLoader } from './components/Home';
 import { Post, loader as postLoader } from './components/Post';
 import PEContainer from './components/PEContainer';
 import { PostEditor, loader as editorLoader } from './components/PostEditor';
-import Login from './components/Login';
+import Login, { action as loginAction } from './components/Login';
 import Signup from './components/SignUp';
 import { SpinnerDiamond } from 'spinners-react';
 
@@ -44,6 +44,7 @@ const Router = () => {
       path: 'login',
       element: <Login />,
       errorElement: <ErrorPage />,
+      action: loginAction,
     },
     {
       path: 'signup',
