@@ -1,0 +1,82 @@
+:root {
+  font-family: Inter, system-ui, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+
+  margin: 0;
+  padding: 0;
+
+}
+
+*{
+  outline: 1px solid red;
+
+}
+
+html {
+  box-sizing: border-box;
+}
+
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+#root{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+}
+
+.header, .element, .footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 0 1rem;
+
+  background-color: #2424241d;
+  color: rgba(255, 255, 255, 0.87);
+  min-width: 100lvw;
+}
+
+.header{
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  height: 3rem;
+}
+
+.footer{;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  height: 3rem;
+}
+
+.element {
+  flex-direction: column;
+  justify-content: flex-start;
+  flex-grow: 1;
+  padding: 1rem 0;
+}
+
+.comment {
+  margin: .25rem;
+}
+
+.textarea {
+  white-space: pre-wrap;
+}
+
