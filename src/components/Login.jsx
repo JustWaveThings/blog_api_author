@@ -1,6 +1,7 @@
 import React from 'react';
 import { useNavigate, Form, useActionData } from 'react-router-dom';
 import login from '../utils/login';
+import logout from '../utils/logout';
 
 export const action = async ({ request }) => {
   const form = await request.formData();
@@ -16,7 +17,6 @@ export const action = async ({ request }) => {
 
 function Login() {
   const actionData = useActionData();
-  console.log(actionData);
 
   return (
     <div className='element'>
@@ -46,6 +46,7 @@ function Login() {
         <br />
         <button type='submit'>Log In</button>
       </Form>
+      <button onClick={() => logout()}>Logout</button>
     </div>
   );
 }
