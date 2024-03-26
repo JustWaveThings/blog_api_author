@@ -19,7 +19,7 @@
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.16.0",
     "spinners-react": "^1.0.7",
-    "tinymce": "^6.7.3",
+    "tinymce": "^7.0.0",
     "validator": "^13.11.0"
   },
   "devDependencies": {
